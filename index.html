@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>adwait.ai - Accelerating Your AI Journey with Modern Data Platforms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-deep-space: #0a0e27;
+            --color-midnight: #1a1f3a;
+            --color-electric-blue: #3b82f6;
+            --color-cyber-purple: #8b5cf6;
+            --color-neon-accent: #06b6d4;
+            --color-soft-white: #f8fafc;
+            --color-muted-gray: #94a3b8;
+            --color-card-bg: rgba(26, 31, 58, 0.6);
+            --font-display: 'Playfair Display', serif;
+            --font-heading: 'DM Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-heading);
+            background: var(--color-deep-space);
+            color: var(--color-soft-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated background */
+        .bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            color: var(--color-soft-white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--color-neon-accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-neon-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main container */
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-soft-white), var(--color-neon-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 0.8s ease-out 0.5s both;
+        }
+
+        .hero-text .tagline {
+            font-size: 1.5rem;
+            color: var(--color-muted-gray);
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: fadeInUp 0.8s ease-out 0.7s both;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--color-muted-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.9s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 1.1s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            color: white;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-cyber-purple), var(--color-neon-accent));
+            transition: left 0.3s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--color-soft-white);
+            border: 2px solid var(--color-electric-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-electric-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .data-grid {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .grid-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid var(--color-electric-blue);
+            transition: all 0.3s ease;
+        }
+
+        .grid-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(10px);
+        }
+
+        .grid-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            color: var(--color-neon-accent);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--color-soft-white), var(--color-electric-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--color-muted-gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-electric-blue), var(--color-cyber-purple));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+            border-color: var(--color-electric-blue);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--color-soft-white);
+        }
+
+        .service-card p {
+            color: var(--color-muted-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--color-muted-gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-neon-accent);
+        }
+
+        /* Approach Section */
+        .approach {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.05), transparent);
+        }
+
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .approach-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .step {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            padding-left: 5rem;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            border-color: var(--color-electric-blue);
+            transform: translateX(10px);
+        }
+
+        .step-number {
+            position: absolute;
+            left: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+
+        .step h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-soft-white);
+        }
+
+        .step p {
+            color: var(--color-muted-gray);
+        }
+
+        .approach-visual {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            position: sticky;
+            top: 120px;
+        }
+
+        .methodology-item {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid var(--color-cyber-purple);
+        }
+
+        .methodology-item h5 {
+            color: var(--color-neon-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Knowledge Center */
+        .knowledge-center {
+            padding: 8rem 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .blog-card {
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2);
+            border-color: var(--color-electric-blue);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-category {
+            font-family: var(--font-mono);
+            color: var(--color-neon-accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-soft-white);
+        }
+
+        .blog-card p {
+            color: var(--color-muted-gray);
+            line-height: 1.7;
+        }
+
+        /* About Section */
+        .about {
+            padding: 8rem 0;
+            background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.05), transparent);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--color-soft-white), var(--color-cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--color-muted-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .value-item {
+            background: var(--color-card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .value-item h4 {
+            color: var(--color-neon-accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 8rem 0;
+        }
+
+        .contact-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--color-card-bg);
+            backdrop-filter: blur(10px);
+            padding: 4rem;
+            border-radius: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-soft-white);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(10, 14, 39, 0.8);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 10px;
+            color: var(--color-soft-white);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-electric-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-cyber-purple), var(--color-neon-accent));
+            transition: left 0.3s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(6, 182, 212, 0.2);
+            border: 1px solid var(--color-neon-accent);
+            color: var(--color-neon-accent);
+        }
+
+        .form-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-midnight);
+            padding: 3rem 0 1.5rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-about h3 {
+            font-family: var(--font-mono);
+            background: linear-gradient(135deg, var(--color-electric-blue), var(--color-cyber-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .footer-about p {
+            color: var(--color-muted-gray);
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            color: var(--color-soft-white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--color-muted-gray);
+            text-decoration: none;
+            display: block;
+            padding: 0.3rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-neon-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+            color: var(--color-muted-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .approach-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <canvas class="bg-canvas" id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">adwait.ai</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#approach">Our Approach</a></li>
+                <li><a href="#knowledge">Knowledge Center</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Transform Data into Intelligence</h1>
+                        <p class="tagline">Accelerating Your AI Journey with Modern Data and AI Platform</p>
+                        <p>We empower enterprises to build intelligent, AI-ready data platforms. Our strategic consultation services help you establish robust Centers of Excellence, implement Microsoft Fabric solutions, and accelerate your organization's AI transformation journey.</p>
+                        <div class="cta-buttons">
+                            <a href="#contact" class="btn btn-primary"><span>Start Your Journey</span></a>
+                            <a href="#services" class="btn btn-secondary">Explore Services</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="data-grid">
+                            <div class="grid-item">
+                                <div class="grid-icon">🎯</div>
+                                <div>
+                                    <strong>Data Strategy</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Roadmap to AI Innovation</small>
+                                </div>
+                            </div>
+							<div class="grid-item">
+                                <div class="grid-icon">🚀</div>
+                                <div>
+                                    <strong>AI Acceleration</strong><br>
+                                    <small style="color: var(--color-muted-gray);">End-to-End Enablement</small>
+                                </div>
+                            </div>
+							<div class="grid-item">
+                                <div class="grid-icon">⚡</div>
+                                <div>
+                                    <strong>Platform Excellence</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Microsoft Fabric Implementation</small>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <div class="grid-icon">🏗️</div>
+                                <div>
+                                    <strong>CoE Development</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Build & Scale Teams</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <div class="section-label">What We Offer</div>
+                    <h2 class="section-title">Comprehensive Data & AI Services</h2>
+                    <p class="section-description">From strategy to implementation, we deliver end-to-end solutions that transform your data infrastructure and accelerate AI adoption.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">📊</div>
+                        <h3>Strategic Consultation</h3>
+                        <p>Navigate your data and AI transformation with confidence. We develop comprehensive roadmaps and strategies tailored to your business objectives.</p>
+                        <ul class="service-features">
+                            <li>Data Platform Assessment & Roadmapping</li>
+                            <li>AI Strategy Development</li>
+                            <li>Technology Stack Evaluation</li>
+                            <li>Business Case Development</li>
+                            <li>Digital Transformation Planning</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">🏛️</div>
+                        <h3>Center of Excellence Development</h3>
+                        <p>Build and scale high-performing data and AI teams. We establish frameworks, patterns, and best practices that drive organizational excellence.</p>
+                        <ul class="service-features">
+                            <li>CoE Framework Design & Implementation</li>
+                            <li>Team Structure & Governance Models</li>
+                            <li>Best Practices & Design Patterns</li>
+                            <li>Operating Model Definition</li>
+                            <li>Capability Building & Training</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">🔷</div>
+                        <h3>Microsoft Fabric Implementation</h3>
+                        <p>Harness the power of Microsoft's unified analytics platform. We design and implement scalable data engineering and platform architectures.</p>
+                        <ul class="service-features">
+                            <li>Platform Architecture & Design</li>
+                            <li>Data Engineering Pipeline Development</li>
+                            <li>OneLake Integration & Optimization</li>
+                            <li>Real-Time Intelligence Solutions</li>
+                            <li>Migration & Modernization Services</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">🔄</div>
+                        <h3>Data Platform Modernization</h3>
+                        <p>Transform legacy systems into AI-ready platforms. We modernize your data infrastructure to unlock the full potential of artificial intelligence.</p>
+                        <ul class="service-features">
+                            <li>Legacy System Assessment</li>
+                            <li>Cloud Migration Strategy</li>
+                            <li>Data Architecture Modernization</li>
+                            <li>AI-Ready Infrastructure Design</li>
+                            <li>Governance & Security Implementation</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">🤖</div>
+                        <h3>AI Acceleration Services</h3>
+                        <p>Drive meaningful AI outcomes across your organization. Our end-to-end enablement services ensure successful AI adoption and value realization.</p>
+                        <ul class="service-features">
+                            <li>AI Use Case Identification & Prioritization</li>
+                            <li>MLOps & Model Governance</li>
+                            <li>Generative AI Integration</li>
+                            <li>AI Ethics & Responsible AI Frameworks</li>
+                            <li>Change Management & User Adoption</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card scroll-reveal">
+                        <div class="service-icon">⚙️</div>
+                        <h3>Jump Start Programs</h3>
+                        <p>Accelerate your time-to-value with our rapid deployment programs. Get your data platform and AI initiatives up and running quickly.</p>
+                        <ul class="service-features">
+                            <li>Proof of Concept Development</li>
+                            <li>Accelerated Implementation</li>
+                            <li>Quick-Win Identification</li>
+                            <li>Foundation Setup & Configuration</li>
+                            <li>Knowledge Transfer & Training</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Approach Section -->
+        <section id="approach" class="approach">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <div class="section-label">Our Methodology</div>
+                    <h2 class="section-title">A Proven Approach to Success</h2>
+                    <p class="section-description">We follow a structured, industry-proven methodology that combines strategic thinking with hands-on execution to deliver measurable results.</p>
+                </div>
+
+                <div class="approach-content">
+                    <div class="approach-steps">
+                        <div class="step scroll-reveal">
+                            <div class="step-number">1</div>
+                            <h4>Assess & Discover</h4>
+                            <p>Comprehensive evaluation of your current data landscape, organizational maturity, and AI readiness. We identify opportunities, gaps, and quick wins to build your transformation roadmap.</p>
+                        </div>
+
+                        <div class="step scroll-reveal">
+                            <div class="step-number">2</div>
+                            <h4>Design & Plan</h4>
+                            <p>Develop target-state architecture and detailed implementation roadmap. We create governance frameworks, define operating models, and establish success metrics aligned with your business objectives.</p>
+                        </div>
+
+                        <div class="step scroll-reveal">
+                            <div class="step-number">3</div>
+                            <h4>Build & Implement</h4>
+                            <p>Execute platform deployment, develop data pipelines, and establish CoE structures. Our iterative approach ensures continuous value delivery while maintaining flexibility to adapt to changing needs.</p>
+                        </div>
+
+                        <div class="step scroll-reveal">
+                            <div class="step-number">4</div>
+                            <h4>Enable & Scale</h4>
+                            <p>Drive adoption through comprehensive training, change management, and ongoing optimization. We empower your teams with the knowledge and tools to sustain long-term success and continuous improvement.</p>
+                        </div>
+                    </div>
+
+                    <div class="approach-visual scroll-reveal">
+                        <h3 style="margin-bottom: 1.5rem; color: var(--color-soft-white);">Key Principles</h3>
+                        <div class="methodology-item">
+                            <h5>Business-First Thinking</h5>
+                            <p style="color: var(--color-muted-gray);">Every technical decision aligned with measurable business outcomes and ROI.</p>
+                        </div>
+                        <div class="methodology-item">
+                            <h5>Agile & Iterative</h5>
+                            <p style="color: var(--color-muted-gray);">Rapid delivery cycles with continuous feedback and adaptation to maximize value.</p>
+                        </div>
+                        <div class="methodology-item">
+                            <h5>Platform Thinking</h5>
+                            <p style="color: var(--color-muted-gray);">Build reusable capabilities and self-service platforms that scale across the enterprise.</p>
+                        </div>
+                        <div class="methodology-item">
+                            <h5>Knowledge Transfer</h5>
+                            <p style="color: var(--color-muted-gray);">Build internal capabilities through hands-on collaboration and comprehensive training.</p>
+                        </div>
+                        <div class="methodology-item">
+                            <h5>Governance & Security</h5>
+                            <p style="color: var(--color-muted-gray);">Enterprise-grade security, compliance, and data governance built into every solution.</p>
+                        </div>
+                        <div class="methodology-item">
+                            <h5>Continuous Innovation</h5>
+                            <p style="color: var(--color-muted-gray);">Stay ahead with latest technologies, patterns, and industry best practices.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Knowledge Center -->
+        <section id="knowledge" class="knowledge-center">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <div class="section-label">Insights & Resources</div>
+                    <h2 class="section-title">Knowledge Center</h2>
+                    <p class="section-description">Stay informed with our latest insights, best practices, and thought leadership on data platforms and AI.</p>
+                </div>
+
+                <div class="blog-grid">
+                    <div class="blog-card scroll-reveal">
+                        <div class="blog-image">📘</div>
+                        <div class="blog-content">
+                            <div class="blog-category">Whitepaper</div>
+                            <h3>Building an AI Center of Excellence: A Comprehensive Guide</h3>
+                            <p>Learn how to establish a successful AI CoE that drives innovation, governance, and measurable business value across your organization.</p>
+                        </div>
+                    </div>
+
+                    <div class="blog-card scroll-reveal">
+                        <div class="blog-image">🎯</div>
+                        <div class="blog-content">
+                            <div class="blog-category">Best Practices</div>
+                            <h3>Microsoft Fabric: Platform Architecture Patterns</h3>
+                            <p>Explore proven architectural patterns and design principles for building scalable, performant data platforms with Microsoft Fabric.</p>
+                        </div>
+                    </div>
+
+                    <div class="blog-card scroll-reveal">
+                        <div class="blog-image">🚀</div>
+                        <div class="blog-content">
+                            <div class="blog-category">Case Study</div>
+                            <h3>Accelerating AI Adoption: Enterprise Transformation Journey</h3>
+                            <p>Discover how we helped a Fortune 500 company accelerate their AI journey from pilot to production in 90 days.</p>
+                        </div>
+                    </div>
+
+                    <div class="blog-card scroll-reveal">
+                        <div class="blog-image">💡</div>
+                        <div class="blog-content">
+                            <div class="blog-category">Thought Leadership</div>
+                            <h3>The Future of Data Platforms: Unified Analytics & AI</h3>
+                            <p>Explore emerging trends in unified data platforms and how they're reshaping enterprise AI capabilities.</p>
+                        </div>
+                    </div>
+
+                    <div class="blog-card scroll-reveal">
+                        <div class="blog-image">🔧</div>
+                        <div class="blog-content">
+                            <div class="blog-category">Technical Guide</div>
+                            <h3>Data Governance at Scale: Framework & Implementation</h3>
+                            <p>A practical guide to implementing enterprise-wide data governance that enables innovation while managing risk.</p>
+                        </div>
+                    </div>
+
+                    <div class="blog-card scroll-reveal">
+                        <div class="blog-image">📊</div>
+                        <div class="blog-content">
+                            <div class="blog-category">Industry Report</div>
+                            <h3>State of Enterprise AI: Trends & Insights 2024</h3>
+                            <p>Key findings from our research on enterprise AI adoption, challenges, and success factors across industries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text scroll-reveal">
+                        <h2>About adwait.ai</h2>
+                        <p>We are a specialized consulting firm focused on helping enterprises navigate their data and AI transformation journeys. Our expertise spans strategic planning, platform engineering, and organizational change management.</p>
+                        <p>With deep expertise in Microsoft Fabric, Azure data services, and modern data platforms, we combine technical excellence with business acumen to deliver solutions that drive real business value.</p>
+                        <p>Our mission is to democratize AI by making enterprise data platforms intelligent, accessible, and ready for the AI era. We believe that every organization deserves a modern data foundation that powers innovation and accelerates growth.</p>
+
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <h4>Excellence</h4>
+                                <p style="color: var(--color-muted-gray); font-size: 0.95rem;">Delivering exceptional quality in every engagement</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Innovation</h4>
+                                <p style="color: var(--color-muted-gray); font-size: 0.95rem;">Staying ahead with cutting-edge technologies</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Partnership</h4>
+                                <p style="color: var(--color-muted-gray); font-size: 0.95rem;">Building long-term relationships with our clients</p>
+                            </div>
+                            <div class="value-item">
+                                <h4>Impact</h4>
+                                <p style="color: var(--color-muted-gray); font-size: 0.95rem;">Focusing on measurable business outcomes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-visual scroll-reveal">
+                        <div class="data-grid">
+                            <h3 style="margin-bottom: 1.5rem; color: var(--color-soft-white);">Why Choose Us</h3>
+                            <div class="grid-item">
+                                <div class="grid-icon">🎓</div>
+                                <div>
+                                    <strong>Deep Expertise</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Certified experts in Microsoft Fabric, Azure, and modern data platforms</small>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <div class="grid-icon">🏆</div>
+                                <div>
+                                    <strong>Fresh Perspective</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Innovative approaches unconstrained by legacy thinking</small>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <div class="grid-icon">⚡</div>
+                                <div>
+                                    <strong>Rapid Value Delivery</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Agile methodology ensuring quick time-to-value and measurable ROI</small>
+                                </div>
+                            </div>
+                            <div class="grid-item">
+                                <div class="grid-icon">🤝</div>
+                                <div>
+                                    <strong>Collaborative Approach</strong><br>
+                                    <small style="color: var(--color-muted-gray);">Working alongside your teams to build internal capabilities</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header scroll-reveal">
+                    <div class="section-label">Get In Touch</div>
+                    <h2 class="section-title">Let's Start Your Transformation</h2>
+                    <p class="section-description">Ready to accelerate your data and AI journey? Contact us to discuss how we can help your organization achieve its goals.</p>
+                </div>
+
+                <div class="contact-wrapper scroll-reveal">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company *</label>
+                                <input type="text" id="company" name="company" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Your Role</label>
+                            <select id="role" name="role">
+                                <option value="">Select your role</option>
+                                <option value="CIO/CTO">CIO/CTO</option>
+                                <option value="CDO">Chief Data Officer</option>
+                                <option value="VP Data/AI">VP of Data/AI</option>
+                                <option value="Data Engineer">Data Engineer</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="IT Manager">IT Manager</option>
+                                <option value="Business Leader">Business Leader</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interest">Area of Interest</label>
+                            <select id="interest" name="interest">
+                                <option value="">Select area of interest</option>
+                                <option value="Strategic Consultation">Strategic Consultation</option>
+                                <option value="CoE Development">CoE Development</option>
+                                <option value="Microsoft Fabric">Microsoft Fabric Implementation</option>
+                                <option value="Data Modernization">Data Platform Modernization</option>
+                                <option value="AI Acceleration">AI Acceleration Services</option>
+                                <option value="Jump Start">Jump Start Program</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" required placeholder="Tell us about your needs and objectives..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span>Send Message</span>
+                        </button>
+
+                        <div id="formMessage" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <h3>adwait.ai</h3>
+                    <p>Accelerating enterprise AI transformation through strategic consultation, platform engineering, and organizational enablement.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Strategic Consultation</a></li>
+                        <li><a href="#services">CoE Development</a></li>
+                        <li><a href="#services">Microsoft Fabric</a></li>
+                        <li><a href="#services">Platform Modernization</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#approach">Our Approach</a></li>
+                        <li><a href="#knowledge">Knowledge Center</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:contact@adwaitai.com">contact@adwaitai.com</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 adwait.ai. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animated background
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${0.2 * (1 - distance / 150)})`;
+                        ctx.lineWidth = 1;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Scroll reveal animations
+        const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+
+        const elementInView = (el, percentageScroll = 100) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= 
+                ((window.innerHeight || document.documentElement.clientHeight) * (percentageScroll/100))
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add('active');
+        };
+
+        const handleScrollAnimation = () => {
+            scrollRevealElements.forEach((el) => {
+                if (elementInView(el, 80)) {
+                    displayScrollElement(el);
+                }
+            });
+        };
+
+        window.addEventListener('scroll', () => {
+            handleScrollAnimation();
+        });
+
+        // Initial check
+        handleScrollAnimation();
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            const messageDiv = document.getElementById('formMessage');
+            const submitBtn = this.querySelector('.submit-btn');
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.querySelector('span').textContent = 'Sending...';
+            
+            try {
+                // Note: Replace this with your actual email service endpoint
+                // For demonstration, using a mock service (FormSubmit, Web3Forms, or similar)
+                const response = await fetch('https://formsubmit.co/ajax/contact@adwait.ai', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                if (response.ok) {
+                    messageDiv.textContent = 'Thank you! Your message has been sent successfully. We\'ll get back to you soon.';
+                    messageDiv.className = 'form-message success';
+                    messageDiv.style.display = 'block';
+                    this.reset();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                messageDiv.textContent = 'Oops! Something went wrong. Please try again or email us directly at contact@adwait.ai';
+                messageDiv.className = 'form-message error';
+                messageDiv.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.querySelector('span').textContent = 'Send Message';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
